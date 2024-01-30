@@ -1,7 +1,7 @@
 {
     "regions": [
         ["Menu", ["New World"]],
-        ["Overworld", ["Nether Portal", "End Portal", "Overworld Structure 1", "Overworld Structure 2", "Swamp", "Ocean", "Dark Forest", "Deep Dark", "Jungle"]],
+        ["Overworld", ["Nether Portal", "End Portal", "Overworld Structure 1", "Overworld Structure 2", "Ocean", "Dark Forest", "Deep Dark", "Jungle"]],
         ["The Nether", ["Nether Structure 1", "Nether Structure 2"]],
         ["The End", ["The End Structure"]],
         ["Village", []],
@@ -9,7 +9,6 @@
         ["Nether Fortress", []],
         ["Bastion Remnant", []],
         ["End City", []],
-        ["Swamp Hut", []],
         ["Ocean Monument", []],
         ["Woodland Mansion", []],
         ["Ancient City", []],
@@ -19,7 +18,6 @@
         ["New World", "Overworld"],
         ["Nether Portal", "The Nether"],
         ["End Portal", "The End"],
-        ["Swamp", "Swamp Hut"],
         ["Ocean", "Ocean Monument"],
         ["Dark Forest", "Woodland Mansion"],
         ["Deep Dark", "Ancient City"],
