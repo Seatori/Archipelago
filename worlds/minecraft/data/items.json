@@ -47,7 +47,11 @@
 		"Spyglass",
 		"Lead",
 		"Bee Trap",
-		"Brush"
+		"Brush",
+		"Structure Compass (Ocean Monument)",
+		"Structure Compass (Woodland Mansion)",
+		"Structure Compass (Ancient City)",
+		"Structure Compass (Trail Ruins)"
 	],
 	"progression_items": [
 		"Archery",
@@ -79,7 +83,11 @@
 		"Dragon Egg Shard",
 		"Spyglass",
 		"Lead",
-		"Brush"
+		"Brush",
+		"Structure Compass (Ocean Monument)",
+		"Structure Compass (Woodland Mansion)",
+		"Structure Compass (Ancient City)",
+		"Structure Compass (Trail Ruins)"
 	],
 	"useful_items": [
 		"Sharpness III Book",
