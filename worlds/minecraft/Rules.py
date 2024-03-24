@@ -218,7 +218,7 @@ def get_rules_lookup(player: int):
             "Eye Spy": lambda state: enter_stronghold(state, player),
             "Serious Dedication": lambda state: (can_brew_potions(state, player) and state.has("Bed", player) and
                 has_diamond_pickaxe(state, player) and has_gold_ingots(state, player)),
-            "Postmortal": lambda state: complete_raid(state, player) or (basic_combat(state, player) and state.can_reach("Woodland Mansion", 'region')),
+            "Postmortal": lambda state: complete_raid(state, player) or (basic_combat(state, player) and state.can_reach("Woodland Mansion", 'Region', player)),
             "Adventuring Time": lambda state: (can_adventure(state, player) and
                 state.can_reach('Ocean Monument', 'Region', player) and  # All Ocean variants except for Warm Ocean
                 state.can_reach('Woodland Mansion', 'Region', player) and state.can_reach('Ancient City', 'Region', player) and  # Dark Forest; Deep Dark
