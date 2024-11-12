@@ -415,6 +415,7 @@ Old One's Army Tier 3;              Location | Item;                            
 // Martian Madness
 Martian Madness;                    Location | Item;                            Wall of Flesh & Golem;
 Influx Waver;                       ;                                           #Martian Madness;
+Laser Drill;                        Pickaxe(230);                               #Martian Madness;
 
 // The Plaguebringer Goliath
 Plague Cell Canister;               Calamity;                                   Golem;
