@@ -415,7 +415,7 @@ Old One's Army Tier 3;              Location | Item;                            
 // Martian Madness
 Martian Madness;                    Location | Item;                            Wall of Flesh & Golem;
 Influx Waver;                       ;                                           #Martian Madness;
-Laser Drill;                        Pickaxe(230);                               #Martian Madness;
+Laser Drill;                        Pickaxe(220);                               #Martian Madness; // Using the Calamity power so it can't mine Exodium Cluster
 
 // The Plaguebringer Goliath
 Plague Cell Canister;               Calamity;                                   Golem;
