@@ -583,25 +583,6 @@ class PokemonDPPtGame(Game):
         return "Shiny Hunting" in self.objectives
 
     @property
-    def time_consuming(self) -> bool:
-        if (self.archipelago_options.include_time_consuming_objectives.value
-            and "Pokémon Diamond, Pearl, and Platinum Versions (NDS)"
-                not in self.archipelago_options.excluded_games_time_consuming_objectives):
-            return True
-        else:
-            return False
-
-    # Unused
-    # @property
-    # def difficult(self) -> bool:
-    #     if (self.archipelago_options.include_difficult_objectives.value
-    #         and "Pokémon Diamond, Pearl, and Platinum Versions (NDS)"
-    #             not in self.archipelago_options.excluded_games_difficult_objectives):
-    #         return True
-    #     else:
-    #         return False
-
-    @property
     def daily_encounters(self) -> bool:
         return bool(self.archipelago_options.pokemon_dppt_daily_encounters.value)
 
@@ -613,6 +594,15 @@ class PokemonDPPtGame(Game):
     def wild_pokemon(self) -> List[str]:
         # List fully in common with all three games
         pokemon: List[str] = self.wild_dppt()[:]
+        # Locked behind a certain time of day; separate in case they're locked behind a toggle in the future
+        pokemon.extend(self.wild_time_dppt()[:])
+        if self.has_diamond:
+            pokemon.append("Murkrow")
+        if self.has_pearl:
+            pokemon.extend("Misdreavus")
+        # Everything uniquely time-locked in Platinum isn't time-locked in Diamond and Pearl
+        if not self.has_diamond and not self.has_pearl:
+            pokemon.extend(self.wild_time_pt()[:])
 
         # Full version exclusives
         if self.has_diamond:
@@ -629,17 +619,6 @@ class PokemonDPPtGame(Game):
             pokemon.extend(self.wild_dpt()[:])
         if self.has_pearl or self.has_platinum:
             pokemon.extend(self.wild_ppt()[:])
-
-        # Locked behind a certain time of day
-        if self.time_consuming:
-            pokemon.extend(self.wild_time_dppt()[:])
-        if self.has_diamond and self.time_consuming:
-            pokemon.append("Murkrow")
-        if self.has_pearl and self.time_consuming:
-            pokemon.extend("Misdreavus")
-        # Everything uniquely time-locked in Platinum isn't time-locked in Diamond and Pearl
-        if not self.has_diamond and not self.has_pearl and self.time_consuming:
-            pokemon.extend(self.wild_time_pt()[:])
 
         return pokemon
 
@@ -808,17 +787,17 @@ class PokemonDPPtGame(Game):
             "Drifloon",
         ][:])
 
-        if not self.time_consuming:
-            pokemon.extend([
-                # Time-based
-                "Hoothoot",
-                "Noctowl",
-                "Ledian",
-                "Ariados",
-                "Banette",
-                "Kricketot",
-                "Chatot",
-            ][:])
+        # if not self.include_time_consuming_objectives:
+        #     pokemon.extend([
+        #         # Time-based
+        #         "Hoothoot",
+        #         "Noctowl",
+        #         "Ledian",
+        #         "Ariados",
+        #         "Banette",
+        #         "Kricketot",
+        #         "Chatot",
+        #     ][:])
 
         if self.has_diamond:
             pokemon.extend([
@@ -829,8 +808,8 @@ class PokemonDPPtGame(Game):
                 "Cranidos",
             ][:])
 
-        if self.has_diamond and not self.time_consuming:
-            pokemon.append("Murkrow")  # Time-based
+        # if self.has_diamond and not self.include_time_consuming_objectives:
+        #     pokemon.append("Murkrow")  # Time-based
 
         if self.has_pearl:
             pokemon.extend([
@@ -841,8 +820,8 @@ class PokemonDPPtGame(Game):
                 "Shieldon",
             ][:])
 
-        if self.has_pearl and not self.time_consuming:
-            pokemon.append("Misdreavus")  # Time-based
+        # if self.has_pearl and not self.include_time_consuming_objectives:
+        #     pokemon.append("Misdreavus")  # Time-based
 
         if self.has_diamond or self.has_pearl:
             pokemon.append("Flygon")  # Evolution-only
@@ -887,16 +866,16 @@ class PokemonDPPtGame(Game):
                 "Wooper",
             ][:])
 
-        if not self.has_diamond and not self.has_pearl and not self.time_consuming:
-            pokemon.extend([
-                # Time-based in Platinum
-                "Cleffa",
-                "Clefairy",
-                "Oddish",
-                "Bellsprout",
-                "Wurmple",
-                "Kricketune",
-            ][:])
+        # if not self.has_diamond and not self.has_pearl and not self.include_time_consuming_objectives:
+        #     pokemon.extend([
+        #         # Time-based in Platinum
+        #         "Cleffa",
+        #         "Clefairy",
+        #         "Oddish",
+        #         "Bellsprout",
+        #         "Wurmple",
+        #         "Kricketune",
+        #     ][:])
 
         if not self.has_diamond and not self.has_platinum:
             pokemon.extend([
