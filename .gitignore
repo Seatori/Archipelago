@@ -65,6 +65,11 @@ Output Logs/
 /datapackage
 /custom_worlds
 
+# Minecraft
+/Minecraft Forge Server
+/jdk17.0.15_6
+minecraft_versions.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
