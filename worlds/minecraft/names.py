@@ -1,0 +1,54 @@
+archery = "Archery"  # Bow, Arrow, Crossbow
+resource_crafting = "Progressive Resource Crafting"  # See below for details
+# Tier 1: Furnace, Blast Furnace, Iron Nuggets, Gold Nuggets, Iron Ingot (from Nuggets), Gold Ingot (from Nuggets)
+# Tier 2: Anvil, Glowstone, Block of Iron, Block of Gold, Block of Copper, Block of Redstone, Block of Diamond,
+# Tier 2 (cont.): Block of Netherite, Block of Emerald, Redstone, Diamonds, Netherite Ingots (from Block of Netherite),
+# Tier 2 (cont.): Gold Ingots (from Block of Gold), Iron Ingots (from Block of Iron)  # Probably also Block of Resin
+# resource_blocks = "Resource Blocks"  # Seems to have been deprecated; keeping for if IDs need to be maintained
+brewing = "Brewing"  # Brewing Stand, Blaze Powder
+enchanting = "Enchanting"  # Bookshelf, Enchanting Table
+bucket = "Bucket"
+flint_and_steel = "Flint and Steel"
+beds = "Bed"  # All colors
+bottles = "Bottles"
+shield = "Shield"
+fishing = "Fishing Rod"  # Fishing Rod, Carrot on a Stick, Warped Fungus on a Stick
+campfires = "Campfire"  # Campfire, Soul Campfire
+weapons = "Progressive Weapons"  # Swords, Axes: Stone; Iron; Diamond
+tools = "Progressive Tools"  # Pickaxes, Shovels, Hoes: Stone; Iron; Diamond. Standard Netherite Ingots from the third
+armor = "Progressive Armor"  # Helmets, Chestplates, Leggings, Boots: Iron; Diamond
+netherite_scrap = "8 Netherite Scrap"
+eight_emerald = "8 Emeralds"
+four_emerald = "4 Emeralds"
+channeling = "Channeling Book"
+silk_touch = "Silk Touch Book"
+sharpness_three = "Sharpness III Book"
+piercing_four = "Piercing IV Book"
+looting_three = "Looting III Book"
+infinity = "Infinity Book"
+diamond_ore = "4 Diamond Ore"
+iron_ore = "16 Iron Ore"
+five_hundred_experience = "500 XP"
+one_hundred_experience = "100 XP"
+fifty_experience = "50 XP"
+ender_pearl = "3 Ender Pearls"
+lapis_lazuli = "4 Lapis Lazuli"
+cooked_porkchop = "16 Porkchops"
+gold_ore = "8 Gold Ore"
+rotten_flesh = "Rotten Flesh"
+the_arrow = "Single Arrow"
+thirty_two_arrow = "32 Arrows"
+saddle = "Saddle"
+compass_village = "Structure Compass (Village)"
+compass_pillager_outpost = "Structure Compass (Pillager Outpost)"
+compass_fortress = "Structure Compass (Nether Fortress)"
+compass_bastion_remnant = "Structure Compass (Bastion Remnant)"
+compass_end_city = "Structure Compass (End City)"
+shulker_box = "Shulker Box"
+dragon_egg_shard = "Dragon Egg Shard"
+spyglass = "Spyglass"
+lead = "Lead"
+# brush = "Brush"  # I fully intend on getting this in
+# shears = "Shears"  # Maybe?
+# firework_rocket = "16 Firework Rockets"  # Another thing I want to add if possible
+trap_bees = "Bee Trap"
