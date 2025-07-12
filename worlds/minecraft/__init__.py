@@ -1,6 +1,6 @@
 from BaseClasses import Tutorial
 from worlds.AutoWorld import World, WebWorld
-from .items import item_table
+from .items import lookup_item_to_id
 from . import names
 
 
@@ -24,4 +24,4 @@ class MinecraftWorld(World):
     game = "Minecraft"
     web = MinecraftWeb()
 
-    item_name_to_id = {data.name: item_id for item_id, data in items.item_table.items()}
+    item_name_to_id = lookup_item_to_id
