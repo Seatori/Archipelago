@@ -47,6 +47,13 @@ can_use_surf_or_strength: ExtendedRule = lambda state, world: (
     )
 )
 
+dark_cave_logic: ExtendedRule = lambda state, world: (
+    not "Require Flash" in world.options.modify_logic or (
+        state.has("TM70 Flash", world.player)
+        and state.has_any(world.flash_species, world.player)
+    )
+)
+
 can_fish: ExtendedRule = lambda state, world: state.has("Super Rod", world.player)
 has_rage_candy_bar: ExtendedRule = lambda state, world: state.has("Rage Candy Bar", world.player)
 has_basement_key: ExtendedRule = lambda state, world: state.has("Basement Key", world.player)
@@ -183,7 +190,7 @@ striaton_hidden_item: ExtendedRule = lambda state, world: state.can_reach_region
 
 extended_rules_list: tuple = (
     can_use_strength, can_use_surf, can_use_cut, can_use_waterfall, can_use_dive, can_use_flash,
-    can_use_surf_or_strength,
+    can_use_surf_or_strength, dark_cave_logic,
 
     can_fish, has_rage_candy_bar, has_basement_key, has_parcel, has_loot_sack, has_dragon_skull, has_liberty_pass,
     has_machine_part, has_explorer_kit, has_tidal_bell, has_oaks_letter, has_blue_card, has_red_chain,
