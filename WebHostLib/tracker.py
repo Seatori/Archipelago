@@ -737,7 +737,7 @@ if "Minecraft" in network_data_package["games"]:
             "Spyglass":           "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c1/Spyglass_JE2_BE1.png",
             "Dragon Egg Shard":   "https://static.wikia.nocookie.net/minecraft_gamepedia/images/3/38/Dragon_Egg_JE4.png",
             "Lead":               "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1f/Lead_JE2_BE2.png",
-            "Brush":              "https://minecraft.wiki/images/Brush_JE1_BE1.png?fd417&format=original",
+            "Brush":              "https://minecraft.wiki/images/Brush_JE1_BE1.png",
             "Saddle":             "https://i.imgur.com/2QtDyR0.png",
             "Channeling Book":    "https://i.imgur.com/J3WsYZw.png",
             "Silk Touch Book":    "https://i.imgur.com/iqERxHQ.png",
@@ -745,28 +745,25 @@ if "Minecraft" in network_data_package["games"]:
         }
 
         minecraft_location_ids = {
-            "Story":       [42073, 42023, 42027, 42039, 42002, 42009, 42010, 42070,
-                            42041, 42049, 42004, 42031, 42025, 42029, 42051, 42077],
-            "Nether":      [42017, 42044, 42069, 42058, 42034, 42060, 42066, 42076, 42064, 42071, 42021,
-                            42062, 42008, 42061, 42033, 42011, 42006, 42019, 42000, 42040, 42001, 42015, 42104, 42014],
-            "The End":     [42052, 42005, 42012, 42032, 42030, 42042, 42018, 42038, 42046],
-            "Adventure":   [42047, 42050, 42096, 42097, 42098, 42059, 42055, 42072, 42003, 42109, 42035, 42016, 42020,
-                            42048, 42054, 42121, 42068, 42043, 42106, 42117, 12118, 42074, 42075, 42024, 42026, 42037,
-                            42045, 42056, 42105, 42099, 42103, 42119, 42120, 42110, 42100],
-            "Husbandry":   [42065, 42067, 42078, 42022, 42113, 42107, 42007, 42079, 42013, 42028, 42036, 42108, 42111,
-                            42112,
-                            42057, 42063, 42053, 42102, 42101, 42092, 42093, 42094, 42095, 42115, 42116, 42117],
-            "Archipelago": [42080, 42081, 42082, 42083, 42084, 42085, 42086, 42087, 42088, 42089, 42090, 42091],
+            "Story":       [74, 24, 28, 40, 3, 10, 11, 71, 42, 50, 5, 32, 26, 30, 52, 78],
+            "Nether":      [18, 45, 70, 59, 35, 61, 77, 65, 72, 22, 63, 9, 62, 34, 12, 7, 20, 1, 41, 2, 16, 105, 15],
+            "The End":     [53, 6, 13, 33, 31, 43, 19, 39, 47],
+            "Adventure":   [48, 51, 97, 98, 99, 60, 56, 73, 4, 110, 36, 17, 21, 49, 55, 137, 122, 69, 44, 107, 118, 119,
+                            75, 76, 25, 27, 38, 46, 57, 106, 100, 104, 120, 121, 111, 101, 67, 123, 127, 128, 134, 129,
+                            130, 132, 133, 131, 136],
+            "Husbandry":   [66, 68, 79, 23, 114, 108, 8, 80, 124, 125, 126, 14, 29, 37, 109, 112, 113, 58, 64, 54, 103,
+                            102, 93, 94, 95, 96, 115, 116, 117, 135],
+            "Archipelago": [81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92],
         }
 
         display_data = {}
 
         # Determine display for progressive items
         progressive_items = {
-            "Progressive Tools":             45013,
-            "Progressive Weapons":           45012,
-            "Progressive Armor":             45014,
-            "Progressive Resource Crafting": 45001
+            "Progressive Tools":             13,
+            "Progressive Weapons":           12,
+            "Progressive Armor":             14,
+            "Progressive Resource Crafting": 2
         }
         progressive_names = {
             "Progressive Tools":             ["Wooden Pickaxe", "Stone Pickaxe", "Iron Pickaxe", "Diamond Pickaxe"],
@@ -784,9 +781,9 @@ if "Minecraft" in network_data_package["games"]:
 
         # Multi-items
         multi_items = {
-            "3 Ender Pearls":    45029,
-            "8 Netherite Scrap": 45015,
-            "Dragon Egg Shard":  45043
+            "3 Ender Pearls":    29,
+            "8 Netherite Scrap": 15,
+            "Dragon Egg Shard":  43
         }
         for item_name, item_id in multi_items.items():
             base_name = item_name.split()[-1].lower()
@@ -818,7 +815,7 @@ if "Minecraft" in network_data_package["games"]:
             player=player,
             team=team,
             room=tracker_data.room,
-            player_name=tracker_data.get_player_name(team, player),
+            player_name=tracker_data.get_player_name(player),
             saving_second=tracker_data.get_room_saving_second(),
             checks_done=checks_done,
             checks_in_area=checks_in_area,
