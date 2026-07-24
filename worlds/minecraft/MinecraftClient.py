@@ -434,6 +434,7 @@ class MinecraftClient(MDApp):
                                        stdout=subprocess.PIPE,
                                        stdin=subprocess.PIPE,
                                        encoding="utf-8",
+                                       errors="replace",
                                        text=True,
                                        cwd=neo_dir,
                                        )

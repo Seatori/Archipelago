@@ -135,7 +135,8 @@ class DownloadNeoForge(StepsStep):
         self.java_path_relative = os.path.relpath(self.java_path, self.root)
         self.logger.info(f"Using Java at {self.java_path}")
 
-        self.all_run = [self.java_path, f"-Xmx{self.heap}", f"-Xms{self.heap}", "@user_jvm_args.txt"]
+        self.all_run = [self.java_path, "-Dsun.stdout.encoding=UTF-8", "-Dsun.stderr.encoding=UTF-8",
+                        f"-Xmx{self.heap}", f"-Xms{self.heap}", "@user_jvm_args.txt"]
         self.windows_run = self.all_run + [f"@libraries/net/neoforged/neoforge/{self.neo_latest}/win_args.txt"]
         self.unix_run = self.all_run + [f"@libraries/net/neoforged/neoforge/{self.neo_latest}/unix_args.txt"]
         self.system_run = self.windows_run if Utils.is_windows else (self.unix_run if Utils.is_linux else None)
