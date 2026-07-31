@@ -136,7 +136,8 @@
         "Revaulting",
         "Stay Hydrated!",
         "Heart Transplanter",
-        "Mob Kabob"
+        "Mob Kabob",
+        "Uh Oh"
     ],
     "locations_by_region": {
         "Overworld": [
@@ -217,7 +218,8 @@
             "Lighten Up",
             "Stay Hydrated!",
             "Heart Transplanter",
-            "Mob Kabob"
+            "Mob Kabob",
+            "Uh Oh"
         ],
         "The Nether": [
             "Hot Tourist Destinations",

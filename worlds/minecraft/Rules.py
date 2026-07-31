@@ -637,7 +637,8 @@ def get_rules_lookup(world, player: int):
                                                   and can_enchant(world, state, player)
                                                  )
                                                 ),
-            "Mob Kabob": lambda state: state.has("Progressive Resource Crafting", player)
+            "Mob Kabob": lambda state: state.has("Progressive Resource Crafting", player),
+            "Uh Oh": lambda state: can_adventure(world, state, player)
         }
     }
     return rules_lookup

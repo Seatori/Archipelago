@@ -1720,3 +1720,12 @@ class TestAdvancements(MCTestBase):
             ["Mob Kabob", False, [], ["Progressive Resource Crafting"]],
             ["Mob Kabob", True, ["Progressive Resource Crafting"]]
         ])
+
+    def test_42137(self):
+        self.run_location_tests([
+            ["Uh Oh", False, []],
+            ["Uh Oh", False, [], ["Progressive Weapons"]],
+            ["Uh Oh", False, [], ["Progressive Resource Crafting", "Campfire"]],
+            ["Uh Oh", True, [], ["Progressive Weapons", "Progressive Resource Crafting"]],
+            ["Uh Oh", True, [], ["Progressive Weapons", "Campfire"]]
+        ])
