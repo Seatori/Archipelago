@@ -1728,8 +1728,8 @@ class TestAdvancements(MCTestBase):
             ["Uh Oh", False, [], ["Progressive Weapons"]],
             ["Uh Oh", False, [], ["Progressive Resource Crafting"]],
             ["Uh Oh", False, [], ["Progressive Armor", "Shield"]],
-            ["Uh Oh", True, [], ["Progressive Tools", "Progressive Weapons", "Progressive Resource Crafting",
-                                 "Progressive Armor"]],
-            ["Uh Oh", True, [], ["Progressive Tools", "Progressive Weapons", "Progressive Resource Crafting",
-                                 "Shield"]],
+            ["Uh Oh", True, ["Progressive Tools", "Progressive Weapons", "Progressive Resource Crafting",
+                             "Progressive Armor"]],
+            ["Uh Oh", True, ["Progressive Tools", "Progressive Weapons", "Progressive Resource Crafting",
+                             "Shield"]],
         ])
