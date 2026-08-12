@@ -639,6 +639,8 @@ def get_rules_lookup(world, player: int):
                                                 ),
             "Mob Kabob": lambda state: state.has("Progressive Resource Crafting", player),
             "Uh Oh": lambda state: can_adventure(world, state, player)
+                                   and basic_combat(world, state, player)
+                                   and state.has("Progressive Tools", player)
         }
     }
     return rules_lookup

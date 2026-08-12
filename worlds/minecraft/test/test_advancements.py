@@ -1724,8 +1724,12 @@ class TestAdvancements(MCTestBase):
     def test_42137(self):
         self.run_location_tests([
             ["Uh Oh", False, []],
+            ["Uh Oh", False, [], ["Progressive Tools"]],
             ["Uh Oh", False, [], ["Progressive Weapons"]],
-            ["Uh Oh", False, [], ["Progressive Resource Crafting", "Campfire"]],
-            ["Uh Oh", True, [], ["Progressive Weapons", "Progressive Resource Crafting"]],
-            ["Uh Oh", True, [], ["Progressive Weapons", "Campfire"]]
+            ["Uh Oh", False, [], ["Progressive Resource Crafting"]],
+            ["Uh Oh", False, [], ["Progressive Armor", "Shield"]],
+            ["Uh Oh", True, [], ["Progressive Tools", "Progressive Weapons", "Progressive Resource Crafting",
+                                 "Progressive Armor"]],
+            ["Uh Oh", True, [], ["Progressive Tools", "Progressive Weapons", "Progressive Resource Crafting",
+                                 "Shield"]],
         ])
