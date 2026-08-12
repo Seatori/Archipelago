@@ -1718,7 +1718,7 @@ class TestAdvancements(MCTestBase):
         self.run_location_tests([
             ["Mob Kabob", False, []],
             ["Mob Kabob", False, [], ["Progressive Resource Crafting"]],
-            ["Mob Kabob", True, ["Progressive Resource Crafting"]]
+            ["Mob Kabob", True, ["Progressive Resource Crafting"]],
         ])
 
     def test_42137(self):
