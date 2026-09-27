@@ -162,9 +162,12 @@ class MinecraftWorld(World):
             'include_hard_advancements': self.options.include_hard_advancements.value,
             'include_unreasonable_advancements': self.options.include_unreasonable_advancements.value,
             'include_postgame_advancements': self.options.include_postgame_advancements.value,
+            'include_mace': self.options.include_mace.value,
         }
 
     def generate_early(self: "MinecraftWorld") -> None:
+        if "Over-Overkill" in self.options.exclude_locations or self.options.include_hard_advancements.value is False:
+            self.options.include_mace.value = False
         re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
         if re_gen_passthrough and self.game in re_gen_passthrough:
             self.using_ut = True
@@ -179,6 +182,7 @@ class MinecraftWorld(World):
             self.options.include_hard_advancements.value = self.passthrough["include_hard_advancements"]
             self.options.include_unreasonable_advancements.value = self.passthrough["include_unreasonable_advancements"]
             self.options.include_postgame_advancements.value = self.passthrough["include_postgame_advancements"]
+            self.options.include_mace.value = self.passthrough["include_mace"]
             self.options.death_link.value = self.passthrough["death_link"]
             self.options.immediate_respawn.value = self.passthrough["immediate_respawn"]
         else:

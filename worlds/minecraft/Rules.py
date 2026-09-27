@@ -1,8 +1,7 @@
 from BaseClasses import CollectionState
 from worlds.generic.Rules import exclusion_rules
 
-from Options import ExcludeLocations
-from .Options import CombatDifficulty, DeathLink, HardAdvancements, StructureCompasses
+from .Options import CombatDifficulty, DeathLink, IncludeMace, StructureCompasses
 
 from rule_builder.options import OptionFilter
 from rule_builder.rules import Has, CanReachRegion
@@ -134,9 +133,8 @@ def set_main_rules(self: "MinecraftWorld") -> None:
     hard_ominous_vaults = hard & iron_weapons & (iron_armor | shield)
     ominous_vaults = trial_chambers & outpost & (easy_ominous_vaults | normal_ominous_vaults | hard_ominous_vaults)
 
-    hard_advancements = OptionFilter(HardAdvancements, True)
-    exclude_mace = [OptionFilter(ExcludeLocations, ExcludeLocations("Over-Overkill"))]
-    mace = ominous_vaults & hard_advancements & exclude_mace
+    include_mace = OptionFilter(IncludeMace, True)
+    mace = ominous_vaults & include_mace
 
     easy_raid = easy & diamond_weapons & diamond_armor & shield & bow
     normal_raid = normal & iron_weapons & iron_armor & shield
