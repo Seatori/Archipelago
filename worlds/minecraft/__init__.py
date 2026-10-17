@@ -142,9 +142,17 @@ class MinecraftWorld(World):
         exits = [
             connection[0] for connection in Constants.region_info["default_connections"]
         ]
+        # this isn't really needed because the mod doesn't look at this field, but might as well be consistent
+        if (
+            bool(self.options.set_seed.value)
+            and self.options.world_seed.value != "random"
+        ):
+            world_seed = self.options.world_seed.value
+        else:
+            world_seed = self.random.getrandbits(32)
         return {
             # Mod data
-            "world_seed": self.random.getrandbits(32),
+            "world_seed": world_seed,
             "seed_name": self.multiworld.seed_name,
             "player_name": self.player_name,
             "player_id": self.player,
@@ -161,12 +169,13 @@ class MinecraftWorld(World):
                 self.options.egg_shards_available.value,
             ),
             "egg_shards_available": self.options.egg_shards_available.value,
-            "required_bosses": list(self.options.required_bosses.value),
+            "required_bosses": self.options.required_bosses.current_key,
             "MC35": bool(self.options.send_defeated_mobs.value),
             "death_link": bool(self.options.death_link.value),
             "starting_items": json.dumps(self.options.starting_items.value),
             "race": self.multiworld.is_race,
             "immediate_respawn": bool(self.options.immediate_respawn.value),
+            "set_seed": bool(self.options.set_seed.value),
             # Universal Tracker data
             "bosses_to_defeat": list(self.options.required_bosses.value),
             "shuffle_structures": self.options.shuffle_structures.value,

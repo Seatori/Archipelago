@@ -1,5 +1,10 @@
+import typing
+
+from BaseClasses import PlandoOptions
 from Options import (
     Choice,
+    FreeText,
+    NumericOption,
     OptionSet,
     Toggle,
     DefaultOnToggle,
@@ -9,6 +14,7 @@ from Options import (
     PlandoConnections,
     PerGameCommonOptions,
 )
+from worlds.AutoWorld import World
 from .Constants import region_info
 from dataclasses import dataclass
 
@@ -103,7 +109,7 @@ class HardAdvancements(Toggle):
 
 
 class UnreasonableAdvancements(Toggle):
-    """Enables the extremely difficult advancements "How Did We Get Here?" and "Adventuring Time.\" """
+    """Enables the extremely difficult advancements "How Did We Get Here?" and "Adventuring Time." """
 
     display_name = "Include Unreasonable Advancements"
 
@@ -145,6 +151,18 @@ class StartingItems(OptionList):
     display_name = "Starting Items"
 
 
+class SetSeed(Toggle):
+    """Use a specific world seed instead of a random one."""
+
+    display_name = "Set Seed"
+
+
+class WorldSeed(FreeText):
+    """The world seed to use if Set Seed is on; no effect if Set Seed is off or if left blank."""
+
+    display_name = "World Seed"
+
+
 class MCPlandoConnections(PlandoConnections):
     entrances = set(connection[0] for connection in region_info["default_connections"])
     exits = set(connection[1] for connection in region_info["default_connections"])
@@ -178,3 +196,6 @@ class MinecraftOptions(PerGameCommonOptions):
     immediate_respawn: ImmediateRespawn
     death_link: DeathLink
     starting_items: StartingItems
+
+    set_seed: SetSeed
+    world_seed: WorldSeed
