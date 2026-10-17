@@ -481,6 +481,10 @@ class MinecraftClient(MDApp):
             self.log_warn("existing server.properties found; overwriting it")
         with open(server_properties_path, "w") as server_properties_file:
             server_properties_file.writelines(["white-list=false"])
+            if self.apmc["set_seed"]:
+                server_properties_file.writelines(
+                    [f"level-seed={self.apmc['world_seed']}"]
+                )
 
         os.environ["JAVA_OPTS"] = ""
         neo_run = context["neoforge_run_args"]
