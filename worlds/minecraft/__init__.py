@@ -169,7 +169,7 @@ class MinecraftWorld(World):
                 self.options.egg_shards_available.value,
             ),
             "egg_shards_available": self.options.egg_shards_available.value,
-            "required_bosses": list(self.options.required_bosses.current_key),
+            "required_bosses": list(self.options.required_bosses.value),
             "MC35": bool(self.options.send_defeated_mobs.value),
             "death_link": bool(self.options.death_link.value),
             "starting_items": json.dumps(self.options.starting_items.value),
