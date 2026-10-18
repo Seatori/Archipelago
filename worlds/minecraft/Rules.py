@@ -7,7 +7,8 @@ from rule_builder.options import OptionFilter
 from rule_builder.rules import Has, CanReachRegion
 
 from . import Constants
-from typing import TYPE_CHECKING
+import typing
+from typing import TYPE_CHECKING, Literal
 
 if TYPE_CHECKING:
     from . import MinecraftWorld
@@ -155,6 +156,16 @@ def set_main_rules(self: "MinecraftWorld") -> None:
     hard_dragon = hard & ((iron_weapons & iron_armor) | (stone_weapons & bed))
     kill_dragon = respawn_dragon & (easy_dragon | normal_dragon | hard_dragon)
 
+    easy_elder_guardian = easy & diamond_weapons & diamond_armor & potions & can_enchant & bucket & bed
+    normal_elder_guardian = normal & iron_weapons & iron_armor & bucket & bed
+    hard_elder_guardian = hard & ((iron_weapons & iron_armor) | (stone_weapons & bed))
+    kill_elder_guardian = easy_elder_guardian | normal_elder_guardian | hard_elder_guardian
+
+    easy_warden = easy & diamond_weapons & diamond_armor & potions & can_enchant & bed & bow
+    normal_warden = normal & iron_weapons & iron_armor & bucket & bed & bow
+    hard_warden = hard & iron_weapons & bed
+    kill_warden = easy_warden | normal_warden | hard_warden
+
     no_compasses = OptionFilter(StructureCompasses, False)
 
     # entrances
@@ -192,6 +203,8 @@ def set_main_rules(self: "MinecraftWorld") -> None:
 
     defeat_ender_dragon = self.get_location("Ender Dragon")
     defeat_wither = self.get_location("Wither")
+    defeat_elder_guardian = self.get_location("Elder Guardian")
+    defeat_warden = self.get_location("Warden")
     obtain_blaze_rods = self.get_location("Blaze Rods")
 
     # locations
@@ -337,6 +350,8 @@ def set_main_rules(self: "MinecraftWorld") -> None:
 
     self.set_rule(defeat_ender_dragon, kill_dragon)
     self.set_rule(defeat_wither, kill_wither)
+    self.set_rule(defeat_elder_guardian, kill_elder_guardian)
+    self.set_rule(defeat_warden, kill_warden)
     self.set_rule(obtain_blaze_rods, loot_fortress)
     self.set_rule(who_is_cutting_onions, piglin_bartering)
     self.set_rule(oh_shiny, piglin_bartering)
@@ -469,18 +484,32 @@ def set_special_rules(self: "MinecraftWorld") -> None:
         postgame_advancements.update(Constants.exclusion_info["wither"])
 
     def location_count(state: CollectionState) -> int:
-        return len([location for location in multiworld.get_locations(player) if
-                    location.address is not None and
-                    location.can_reach(state)])
+        return len(
+            [
+                location
+                for location in multiworld.get_locations(player)
+                if location.address is not None and location.can_reach(state)
+            ]
+        )
 
     def defeated_bosses(state: CollectionState) -> bool:
-        return ((not bosses.dragon or state.has("Ender Dragon", player))
-                and (not bosses.wither or state.has("Wither", player)))
+        return (
+            (not bosses.dragon or state.has("Ender Dragon", player))
+            and (not bosses.wither or state.has("Wither", player))
+            and (not bosses.elder_guardian or state.has("Elder Guardian", player))
+            and (not bosses.warden or state.has("Warden", player))
+        )
 
-    egg_shards = min(self.options.egg_shards_required.value, self.options.egg_shards_available.value)
-    completion_requirements = lambda state: (location_count(state) >= self.options.advancement_goal
-                                             and state.has("Dragon Egg Shard", player, egg_shards))
-    multiworld.completion_condition[player] = lambda state: completion_requirements(state) and defeated_bosses(state)
+    egg_shards = min(
+        self.options.egg_shards_required.value, self.options.egg_shards_available.value
+    )
+    completion_requirements = lambda state: (
+        location_count(state) >= self.options.advancement_goal
+        and state.has("Dragon Egg Shard", player, egg_shards)
+    )
+    multiworld.completion_condition[player] = lambda state: completion_requirements(
+        state
+    ) and defeated_bosses(state)
 
     # Set exclusions on hard/unreasonable/postgame
     excluded_advancements = set()

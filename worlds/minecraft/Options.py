@@ -1,11 +1,28 @@
-from Options import Choice, Toggle, DefaultOnToggle, Range, OptionList, DeathLink, PlandoConnections, \
-    PerGameCommonOptions, Visibility
+import typing
+
+from BaseClasses import PlandoOptions
+from Options import (
+    Choice,
+    FreeText,
+    NumericOption,
+    OptionSet,
+    Toggle,
+    DefaultOnToggle,
+    Range,
+    OptionList,
+    DeathLink,
+    PlandoConnections,
+    PerGameCommonOptions,
+    Visibility,
+)
+from worlds.AutoWorld import World
 from .Constants import region_info
 from dataclasses import dataclass
 
 
 class AdvancementGoal(Range):
     """Number of advancements required to spawn bosses."""
+
     display_name = "Advancement Goal"
     range_start = 0
     range_end = 138
@@ -14,6 +31,7 @@ class AdvancementGoal(Range):
 
 class EggShardsRequired(Range):
     """Number of dragon egg shards to collect to spawn bosses."""
+
     display_name = "Egg Shards Required"
     range_start = 0
     range_end = 50
@@ -22,43 +40,53 @@ class EggShardsRequired(Range):
 
 class EggShardsAvailable(Range):
     """Number of dragon egg shards available to collect."""
+
     display_name = "Egg Shards Available"
     range_start = 0
     range_end = 50
     default = 0
 
 
-class BossGoal(Choice):
+class BossGoal(OptionSet):
     """Bosses which must be defeated to finish the game."""
+
     display_name = "Required Bosses"
-    option_none = 0
-    option_ender_dragon = 1
-    option_wither = 2
-    option_both = 3
-    default = 1
+    default = ["Ender Dragon"]
+    valid_keys = frozenset(["Ender Dragon", "Wither", "Elder Guardian", "Warden"])
 
     @property
     def dragon(self):
-        return self.value % 2 == 1
+        return "Ender Dragon" in self.value
 
     @property
     def wither(self):
-        return self.value > 1
+        return "Wither" in self.value
+
+    @property
+    def elder_guardian(self):
+        return "Elder Guardian" in self.value
+
+    @property
+    def warden(self):
+        return "Warden" in self.value
 
 
 class ShuffleStructures(DefaultOnToggle):
     """Enables shuffling of villages, outposts, fortresses, bastions, and end cities."""
+
     display_name = "Shuffle Structures"
 
 
 class StructureCompasses(DefaultOnToggle):
     """Adds structure compasses to the item pool, which point to the nearest indicated structure."""
+
     display_name = "Structure Compasses"
 
 
 class BeeTraps(Range):
     """Replaces a percentage of junk items with bee traps, which spawn multiple angered bees around every player when
     received."""
+
     display_name = "Bee Trap Percentage"
     range_start = 0
     range_end = 100
@@ -67,6 +95,7 @@ class BeeTraps(Range):
 
 class CombatDifficulty(Choice):
     """Modifies the level of items logically required for exploring dangerous areas and fighting bosses."""
+
     display_name = "Combat Difficulty"
     option_easy = 0
     option_normal = 1
@@ -76,30 +105,37 @@ class CombatDifficulty(Choice):
 
 class HardAdvancements(Toggle):
     """Enables certain RNG-reliant or tedious advancements."""
+
     display_name = "Include Hard Advancements"
 
 
 class UnreasonableAdvancements(Toggle):
-    """Enables the extremely difficult advancements "How Did We Get Here?" and "Adventuring Time.\""""
+    """Enables the extremely difficult advancements "How Did We Get Here?" and "Adventuring Time." """
+
     display_name = "Include Unreasonable Advancements"
 
 
 class PostgameAdvancements(Toggle):
     """Enables advancements that require spawning and defeating the required bosses."""
+
     display_name = "Include Postgame Advancements"
 
 
 class SendDefeatedMobs(Toggle):
     """Send killed mobs to other Minecraft worlds which have this option enabled."""
+
     display_name = "Send Defeated Mobs"
+
 
 class ImmediateRespawn(DefaultOnToggle):
     """Choose whether to respawn immediately on death, or to be put into the game over screen."""
+
     display_name = "Immediate Respawn"
 
 
 class IncludeMace(DefaultOnToggle):
     """Internal option that controls whether the player can be expected to use a Mace for Overkill."""
+
     visibility = Visibility.none
 
 
@@ -118,7 +154,20 @@ class StartingItems(OptionList):
     ]
     ```
     """
+
     display_name = "Starting Items"
+
+
+class SetSeed(Toggle):
+    """Use a specific world seed instead of a random one."""
+
+    display_name = "Set Seed"
+
+
+class WorldSeed(FreeText):
+    """The world seed to use if Set Seed is on; no effect if Set Seed is off or if left blank."""
+
+    display_name = "World Seed"
 
 
 class MCPlandoConnections(PlandoConnections):
@@ -127,7 +176,10 @@ class MCPlandoConnections(PlandoConnections):
 
     @classmethod
     def can_connect(cls, entrance, exit):
-        if exit in region_info["illegal_connections"] and entrance in region_info["illegal_connections"][exit]:
+        if (
+            exit in region_info["illegal_connections"]
+            and entrance in region_info["illegal_connections"][exit]
+        ):
             return False
         return True
 
@@ -152,3 +204,6 @@ class MinecraftOptions(PerGameCommonOptions):
     include_mace: IncludeMace
     death_link: DeathLink
     starting_items: StartingItems
+
+    set_seed: SetSeed
+    world_seed: WorldSeed
