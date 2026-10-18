@@ -159,12 +159,12 @@ def set_main_rules(self: "MinecraftWorld") -> None:
     easy_elder_guardian = easy & diamond_weapons & diamond_armor & potions & can_enchant & bucket & bed
     normal_elder_guardian = normal & iron_weapons & iron_armor & bucket & bed
     hard_elder_guardian = hard & ((iron_weapons & iron_armor) | (stone_weapons & bed))
-    kill_elder_guardian = easy_elder_guardian | normal_elder_guardian | hard_elder_guardian
+    kill_elder_guardian = monument & (easy_elder_guardian | normal_elder_guardian | hard_elder_guardian)
 
     easy_warden = easy & diamond_weapons & diamond_armor & potions & can_enchant & bed & bow
     normal_warden = normal & iron_weapons & iron_armor & bucket & bed & bow
     hard_warden = hard & iron_weapons & bed
-    kill_warden = easy_warden | normal_warden | hard_warden
+    kill_warden = ancient_city & (easy_warden | normal_warden | hard_warden)
 
     no_compasses = OptionFilter(StructureCompasses, False)
 
